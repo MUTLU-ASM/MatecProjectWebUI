@@ -1,0 +1,54 @@
+﻿@model List<EntityLayer.Concrete.Company>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int sayac = 0;
+}
+
+<div class="card mx-6 mt-6 mb-4">
+    <div class="card-header pb-0">
+        <h5>Firma Listesi</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table align-items-center mb-0">
+                <thead>
+                    <tr>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7">#</th>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Firma Adı</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model == null || !Model.Any())
+                    {
+                        <tr>
+                            <td colspan="2" class="text-center text-secondary font-weight-bold">Listede henüz veri girişi yok.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var x in Model)
+                        {
+                            { sayac++; }
+                            <tr>
+                                <td class=" text-center">
+                                    <span class="text-secondary font-weight-bold">@sayac</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="text-secondary font-weight-bold">@x.Name</span>
+                                </td>
+                                <td>
+                                    <a href="/Company/Delete/@x.CompanyId" class="text-secondary font-weight-bold"><i class="fa-regular fa-trash-can" style="color: #ed0c0c;"></i>&nbsp;&nbsp; Sil</a>
+                                </td>
+                                <td>
+                                    <a href="/Company/Update/@x.CompanyId" class="text-secondary font-weight-bold"><i class="fa-solid fa-rotate" style="color: #0edd12;"></i>&nbsp;&nbsp; Güncelle</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<a href="/Company/Create" class="btn btn-secondary mx-6"><i class="fa-solid fa-plus"></i>&nbsp; Yeni Firma Ekle</a>
