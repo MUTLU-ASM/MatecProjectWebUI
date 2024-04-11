@@ -2,7 +2,7 @@
 
 namespace MatecProjectWebUI.Controllers
 {
-    public class Product : Controller
+    public class ProductController : Controller
     {
         public IActionResult Index()
         {
