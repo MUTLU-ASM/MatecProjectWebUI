@@ -13,16 +13,16 @@
             <form method="post">
                 <input type="hidden" class="form-control border" asp-for="ProductPriceId" readonly>
                 <label>Ürün Kodu</label>
-                <input type="text" class="form-control border" asp-for="ProductId">
+                <select asp-for="Product" class="form-control" asp-items="@ViewBag.productList"></select>
                 <br />
-                <label>Birim</label>
-                <input type="text" class="form-control border" asp-for="UnitTypeId">
+                <label>Birim Cinsi</label>
+                <select asp-for="UnitType" class="form-control" asp-items="@ViewBag.unitTypeList"></select>
                 <br />
                 <label>Fiyat</label>
                 <input type="text" class="form-control border" asp-for="Price">
                 <br />
                 <label>Geçerlilik Tarihi</label>
-                <input type="datetime" class="form-control border" asp-for="ValidityDate">
+                <input type="date" class="form-control border" asp-for="ValidityDate">
                 <br />
                 <button class="btn btn-info"><i class="fa-regular fa-floppy-disk"></i>&nbsp;&nbsp; Kaydet</button>
                 <a href="/ProductPrice/Index" class="btn btn-primary float-right">Vazgeç</a>

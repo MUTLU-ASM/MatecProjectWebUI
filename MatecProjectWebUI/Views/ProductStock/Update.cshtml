@@ -14,10 +14,10 @@
                 <input type="hidden" class="form-control border" asp-for="ProductStockId" readonly>
                 <br />
                 <label>Ürün Kodu</label>
-                <input type="text" class="form-control border" asp-for="ProductId">
+                @Html.DropDownListFor(x => x.ProductId, (List<SelectListItem>)ViewBag.productList, new { @class = "form-control" })
                 <br />
                 <label>Birim Cinsi</label>
-                <input type="text" class="form-control border" asp-for="UnitTypeId">
+                @Html.DropDownListFor(x => x.UnitTypeId, (List<SelectListItem>)ViewBag.unitTypeList, new { @class = "form-control" })
                 <br />
                 <label>Stok</label>
                 <input type="text" class="form-control border" asp-for="Stock">

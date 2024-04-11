@@ -1,16 +1,19 @@
 ﻿using BusinessLayer.Abstract;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MatecProjectWebUI.Controllers
 {
     public class ProductController : Controller
     {
         IProductService _productService;
+        ICompanyService _companyService;
 
-        public ProductController(IProductService productService)
+        public ProductController(IProductService productService, ICompanyService companyService)
         {
             _productService = productService;
+            _companyService = companyService;
         }
 
         public IActionResult Index()
@@ -22,6 +25,8 @@ namespace MatecProjectWebUI.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            List<SelectListItem> companyList = GetCompanyList();
+            ViewBag.companyList = companyList;
             return View();
         }
         [HttpPost]
@@ -41,6 +46,8 @@ namespace MatecProjectWebUI.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
+            List<SelectListItem> companyList = GetCompanyList();
+            ViewBag.companyList = companyList;
             var value = _productService.TGetById(id);
             return View(value);
         }
@@ -49,6 +56,16 @@ namespace MatecProjectWebUI.Controllers
         {
             _productService.TUpdate(product);
             return RedirectToAction("Index");
+        }
+
+        private List<SelectListItem> GetCompanyList()
+        {
+            return (from x in _companyService.TGetAllList()
+                    select new SelectListItem
+                    {
+                        Text = x.Name,
+                        Value = x.CompanyId.ToString()
+                    }).ToList();
         }
     }
 }
