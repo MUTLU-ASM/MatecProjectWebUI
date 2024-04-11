@@ -1,0 +1,32 @@
+﻿@model EntityLayer.Concrete.ProductPrice
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card mx-6 my-6">
+    <div class="card-header pb-0">
+        <h5>Yeni Ürün Fiyatı Ekleme Sayfası</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <form method="post">
+                <input type="hidden" class="form-control border" asp-for="ProductPriceId" readonly>
+                <label>Ürün Kodu</label>
+                <input type="text" class="form-control border" asp-for="ProductId">
+                <br />
+                <label>Birim</label>
+                <input type="text" class="form-control border" asp-for="UnitTypeId">
+                <br />
+                <label>Fiyat</label>
+                <input type="text" class="form-control border" asp-for="Price">
+                <br />
+                <label>Geçerlilik Tarihi</label>
+                <input type="datetime" class="form-control border" asp-for="ValidityDate">
+                <br />
+                <button class="btn btn-info"><i class="fa-regular fa-floppy-disk"></i>&nbsp;&nbsp; Kaydet</button>
+                <a href="/ProductPrice/Index" class="btn btn-primary float-right">Vazgeç</a>
+            </form>
+        </div>
+    </div>
+</div>

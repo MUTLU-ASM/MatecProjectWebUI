@@ -12,9 +12,8 @@ namespace EntityLayer.Concrete
         public int ProductId { get; set; }
         public int UnitTypeId { get; set; }
         public double Price { get; set; }
-        public DateTime LastUpdateDate { get; set; }
+        public DateTime? LastUpdateDate { get; set; }
         public DateTime ValidityDate { get; set; }
-        public byte Status { get; set; }
 
         public UnitType UnitType { get; set; }
         public Product Product { get; set; }

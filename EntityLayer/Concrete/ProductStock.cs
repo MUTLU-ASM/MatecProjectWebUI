@@ -11,7 +11,9 @@ namespace EntityLayer.Concrete
         public int ProductStockId { get; set; }
         public int ProductId { get; set; }
         public int Stock { get; set; }
+        public int UnitTypeId { get; set; }
 
+        public UnitType UnitType { get; set; }
         public Product Product { get; set; }
     }
 }

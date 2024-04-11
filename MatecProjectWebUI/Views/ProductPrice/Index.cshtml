@@ -1,0 +1,77 @@
+﻿@model List<EntityLayer.Concrete.ProductPrice>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int sayac = 0;
+}
+
+<div class="card mx-6 mt-6 mb-4">
+    <div class="card-header pb-0">
+        <h5>Ürün Fiyat Listesi</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table align-items-center mb-0">
+                <thead>
+                    <tr>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7">#</th>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Ürün Kodu</th>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Birim</th>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Fiyat</th>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Son Güncelleme</th>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Geçerlilik Tarihi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model == null || !Model.Any())
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center text-secondary font-weight-bold">Listede henüz veri girişi yok.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var x in Model)
+                        {
+                            { sayac++; }
+                            <tr>
+                                <td class=" text-center">
+                                    <span class="text-secondary font-weight-bold">@sayac</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="text-secondary font-weight-bold">@x.ProductId</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="text-secondary font-weight-bold">@x.UnitTypeId</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="text-secondary font-weight-bold">@x.Price</span>
+                                </td>
+                                <td class="text-center">
+                                        @if (x.LastUpdateDate == null)
+                                        {
+                                        <span class="badge bg-gradient-danger">Henüz Güncellenmedi</span>
+                                        }
+                                        else
+                                        {
+                                        <span class="badge bg-gradient-success">@x.LastUpdateDate</span>
+                                        }
+                                </td>
+                                <td class="text-center">
+                                    <span class="text-secondary font-weight-bold">@x.ValidityDate.ToShortDateString()</span>
+                                </td>
+                                <td>
+                                    <a href="/ProductPrice/Delete/@x.ProductPriceId" class="text-secondary font-weight-bold"><i class="fa-regular fa-trash-can" style="color: #ed0c0c;"></i>&nbsp;&nbsp; Sil</a>
+                                </td>
+                                <td>
+                                    <a href="/ProductPrice/Update/@x.ProductPriceId" class="text-secondary font-weight-bold"><i class="fa-solid fa-rotate" style="color: #0edd12;"></i>&nbsp;&nbsp; Güncelle</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<a href="/ProductPrice/Create" class="btn btn-secondary mx-6"><i class="fa-solid fa-plus"></i>&nbsp; Yeni Ürün Fiyatı Ekle</a>

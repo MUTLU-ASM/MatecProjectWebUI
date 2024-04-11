@@ -1,0 +1,30 @@
+﻿@model EntityLayer.Concrete.ProductStock
+@{
+    ViewData["Title"] = "Update";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card mx-6 my-6">
+    <div class="card-header pb-0">
+        <h5>Ürün Stok Güncelleme Sayfası</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <form method="post">
+                <input type="hidden" class="form-control border" asp-for="ProductStockId" readonly>
+                <br />
+                <label>Ürün Kodu</label>
+                <input type="text" class="form-control border" asp-for="ProductId">
+                <br />
+                <label>Birim Cinsi</label>
+                <input type="text" class="form-control border" asp-for="UnitTypeId">
+                <br />
+                <label>Stok</label>
+                <input type="text" class="form-control border" asp-for="Stock">
+                <br />
+                <button class="btn btn-info"><i class="fa-solid fa-rotate"></i>&nbsp;&nbsp; Güncelle</button>
+                <a href="/ProductStock/Index" class="btn btn-primary float-right">Vazgeç</a>
+            </form>
+        </div>
+    </div>
+</div>
