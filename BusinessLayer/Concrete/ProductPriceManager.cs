@@ -18,7 +18,6 @@ namespace BusinessLayer.Concrete
         {
             _productPriceDal = productPriceDal;
         }
-
         public void TAdd(ProductPrice entity)
         {
             _productPriceDal.Add(entity);
@@ -37,6 +36,11 @@ namespace BusinessLayer.Concrete
         public ProductPrice TGetById(int id)
         {
             return _productPriceDal.GetById(id);
+        }
+
+        public List<ProductPrice> TGetListInclude()
+        {
+            return _productPriceDal.GetListInclude();
         }
 
         public void TUpdate(ProductPrice entity)

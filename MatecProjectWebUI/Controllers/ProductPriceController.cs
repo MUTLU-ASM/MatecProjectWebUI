@@ -15,7 +15,7 @@ namespace MatecProjectWebUI.Controllers
 
         public IActionResult Index()
         {
-            var values = _productPriceService.TGetAllList();
+            var values = _productPriceService.TGetListInclude();
             return View(values);
         }
         [HttpGet]

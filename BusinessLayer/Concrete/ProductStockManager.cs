@@ -39,6 +39,11 @@ namespace BusinessLayer.Concrete
             return _productStockDal.GetById(id);
         }
 
+        public List<ProductStock> TGetListInclude()
+        {
+            return _productStockDal.GetListInclude();
+        }
+
         public void TUpdate(ProductStock entity)
         {
             _productStockDal.Update(entity);

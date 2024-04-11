@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IProductStockDal : IGenericDal<ProductStock>
     {
+        List<ProductStock> GetListInclude();
     }
 }

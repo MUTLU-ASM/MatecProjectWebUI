@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
 {
     public interface IProductStockService : IGenericService<ProductStock>
     {
+        List<ProductStock> TGetListInclude();
     }
 }
