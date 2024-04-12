@@ -23,7 +23,7 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UnitType",
+                name: "UnitTypes",
                 columns: table => new
                 {
                     UnitTypeId = table.Column<int>(type: "int", nullable: false)

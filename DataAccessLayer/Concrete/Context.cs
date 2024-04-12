@@ -14,6 +14,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductPrice> ProductPrices { get; set; }
         public DbSet<ProductStock> ProductStocks { get; set; }
+        public DbSet<UnitType> unitTypes { get; set; }
 
         // protected tanımı o değere, bulunduğu class  ve ondan türetilen diğer sınıflar içinden erişilebilir olduğunu göstermektedir.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

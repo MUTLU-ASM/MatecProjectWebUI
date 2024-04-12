@@ -1,0 +1,63 @@
+﻿@model List<ProcedureBestPriceModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int sayac = 0;
+}
+
+<div class="card mx-6 mt-6 mb-4">
+    <div class="card-header pb-0">
+        <h5>En iyi Fiyatlı Ürün</h5>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table align-items-center mb-0">
+                <thead>
+                    <tr>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7">#</th>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Ürün Kodu</th>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Stock</th>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Fiyat</th>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Geçerlilik Tarihi</th>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Firma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model == null || !Model.Any())
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center text-secondary font-weight-bold">Listede henüz veri yok.</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var x in Model)
+                        {
+                            { sayac++; }
+                            <tr>
+                                <td class=" text-center">
+                                    <span class="text-secondary font-weight-bold">@sayac</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="text-secondary font-weight-bold">@x.ProductCode</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="text-secondary font-weight-bold">@x.Stock</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="text-secondary font-weight-bold">@x.Price</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="text-secondary font-weight-bold">@x.ValidityDate.ToShortDateString()</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="text-secondary font-weight-bold">@x.Company</span>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
