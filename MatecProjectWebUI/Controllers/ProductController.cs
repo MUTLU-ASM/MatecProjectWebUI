@@ -46,6 +46,11 @@ namespace MatecProjectWebUI.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
+            ViewBag.statusList = new List<SelectListItem>
+            {
+                  new SelectListItem { Text = "Pasif", Value = "0" },
+                  new SelectListItem { Text = "Aktif", Value = "1" }
+             };
             List<SelectListItem> companyList = GetCompanyList();
             ViewBag.companyList = companyList;
             var value = _productService.TGetById(id);

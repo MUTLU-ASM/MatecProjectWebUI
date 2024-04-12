@@ -16,7 +16,7 @@ namespace DataAccessLayer.EntityFramework
         Context db = new Context();
         public List<ProductPrice> GetListInclude()
         {
-            return db.ProductPrices.Include(x=> x.Price).Include(x =>x.UnitType).ToList();
+            return db.ProductPrices.Include(x=> x.Product).Include(x =>x.UnitType).ToList();
         }
     }
 }

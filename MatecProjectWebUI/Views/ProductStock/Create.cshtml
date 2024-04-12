@@ -14,10 +14,10 @@
                 <input type="hidden" class="form-control border" asp-for="ProductStockId" readonly>
                 <br />
                 <label>Ürün Kodu</label>
-                <select asp-for="Product" class="form-control" asp-items="@ViewBag.productList"></select>
+                <select asp-for="ProductId" class="form-control" asp-items="@ViewBag.productList"></select>
                 <br />
                 <label>Birim Cinsi</label>
-                <select asp-for="UnitType" class="form-control" asp-items="@ViewBag.unitTypeList"></select>
+                <select asp-for="UnitTypeId" class="form-control" asp-items="@ViewBag.unitTypeList"></select>
                 <br />
                 <label>Stok</label>
                 <input type="text" class="form-control border" asp-for="Stock">
