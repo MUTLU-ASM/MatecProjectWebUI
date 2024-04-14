@@ -4,7 +4,7 @@
 
 namespace DataAccessLayer.Migrations
 {
-    public partial class mig_StoredProcedure_BestPrice : Migration
+    public partial class mig_storedProcedures : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,11 +18,13 @@ namespace DataAccessLayer.Migrations
 	                                @Company NVARCHAR(250) OUTPUT
 	                                )
                                 AS
+                                DECLARE @CurrentDate DATETIME2(7);
+								SET @CurrentDate = GETDATE();
                                 SELECT TOP 1 @ProductCode=x.Code,@Stock=y.Stock,@Price=z.Price,@ValidityDate=z.ValidityDate,@Company=c.Name FROM Products x
                                 JOIN ProductStocks y ON x.ProductId = y.ProductId
                                 JOIN ProductPrices z ON x.ProductId = z.ProductId
                                 JOIN Companies c ON x.CompanyId = c.CompanyId
-                                WHERE x.Code=@Code
+                                WHERE x.Code=@Code AND z.ValidityDate > @CurrentDate
                                 ORDER BY
                                         z.Price
                                 GO");

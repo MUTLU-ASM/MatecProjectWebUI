@@ -17,8 +17,9 @@ namespace MatecProjectWebUI.Controllers
             HtmlDocument values = webPage.Load(urlPage);
             var pagedNumber = Convert.ToInt16(values.QuerySelector("div.paginate-content a:last-child").InnerText);
 
+            //Bu döngüde yukarıda alinmis olan pagedNumber ile dongunun bu sayı kadar donulmesi saglanabilir suanlık bu kadar veriyi alırken yavas calismasi sebebiyle elle sayı girilmistir.
             var tasks = new List<Task>();
-            for (int i = 1; i <= 2; i++)
+            for (int i = 1; i <= 3/*sayfa sayısı*/; i++)
             {
                 var url = $"https://www.matecelectronics.com/kategori/circular-connectors?tp={i}";
                 tasks.Add(GetDataAsync(url, model));

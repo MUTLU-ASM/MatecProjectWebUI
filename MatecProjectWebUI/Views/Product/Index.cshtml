@@ -17,6 +17,8 @@
                         <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Ürün Kodu</th>
                         <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Adı</th>
                         <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Firma</th>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Stok / Birim</th>
+                        <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Fiyat</th>
                         <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Resim</th>
                         <th class="text-uppercase text-secondary text-center font-weight-bolder opacity-7 ps-2">Durum</th>
                     </tr>
@@ -40,14 +42,20 @@
                                 <td class="text-center">
                                     <span class="text-secondary font-weight-bold">@x.Code</span>
                                 </td>
-                                <td class="text-center">
+                                <td class="text-center w-10">
                                     <span class="text-secondary font-weight-bold">@x.Name</span>
                                 </td>
                                 <td class="text-center">
                                     <span class="text-secondary font-weight-bold">@x.Company.Name</span>
                                 </td>
-                                <td class="text-center w-25">
-                                    <img src="@x.Image" class="w-15" alt="Alternate Text" />
+                                <td class="text-center">
+                                    <span class="text-secondary font-weight-bold"> @(x.ProductStock?.Stock ?? 0) / @(x.ProductStock?.UnitType?.Name ?? "-")</span>
+                                </td>
+                                <td class="text-center">
+                                    <span class="text-secondary font-weight-bold">@(x.ProductPrice?.Price ?? 0) ₺</span>
+                                </td>
+                                <td class="text-center w-10 ">
+                                    <img src="@x.Image" class="w-30" alt="Alternate Text" />
                                 </td>
                                 <td class="text-center">
                                     @if (x.Status == 0)

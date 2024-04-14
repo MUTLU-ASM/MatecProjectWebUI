@@ -21,6 +21,7 @@ namespace MatecProjectWebUI.Controllers
 
             await db.Database.ExecuteSqlRawAsync($"EXECUTE sp_GetPrice '98A457AST',@productCode OUTPUT,@stock OUTPUT,@price OUTPUT,@validityDate OUTPUT,@company OUTPUT", productParameter, stockParameter, priceParameter, validityDateParameter, companyParameter);
 
+            var deneme = productParameter.Value.ToString();
             //Olusturulan model üzerinde gosterilmek istenilen bilgileri procedure fonksiyondan donen verileri model bilgilerine aktararak verilere erisilmis olundu. 
             List<ProcedureBestPriceModel> values = new List<ProcedureBestPriceModel>();
 

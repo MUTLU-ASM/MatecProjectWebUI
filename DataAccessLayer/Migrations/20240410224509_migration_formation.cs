@@ -66,7 +66,7 @@ namespace DataAccessLayer.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     UnitTypeId = table.Column<int>(type: "int", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
+                    Price = table.Column<double>(type: "float", nullable: true),
                     LastUpdateDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ValidityDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<byte>(type: "tinyint", nullable: false)
@@ -95,7 +95,7 @@ namespace DataAccessLayer.Migrations
                     ProductStockId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    Stock = table.Column<int>(type: "int", nullable: false)
+                    Stock = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -7,5 +7,10 @@
         public double Price { get; set; }
         public DateTime ValidityDate { get; set; }
         public string Company { get; set; }
+
+        //public ProcedureBestPriceModel()
+        //{
+        //    ProductCode = "";
+        //}
     }
 }

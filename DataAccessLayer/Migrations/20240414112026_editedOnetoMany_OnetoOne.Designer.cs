@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240414112026_editedOnetoMany_OnetoOne")]
+    partial class editedOnetoMany_OnetoOne
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -119,7 +121,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UnitTypeId")
+                    b.Property<int>("UnitTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("ProductStockId");
@@ -189,7 +191,9 @@ namespace DataAccessLayer.Migrations
 
                     b.HasOne("EntityLayer.Concrete.UnitType", "UnitType")
                         .WithMany("ProductStocks")
-                        .HasForeignKey("UnitTypeId");
+                        .HasForeignKey("UnitTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
 

@@ -16,7 +16,7 @@ namespace EntityLayer.Concrete
         public byte Status { get; set; }
 
         public Company Company { get; set; }
-        public ICollection<ProductStock> ProductStocks { get; set; }
-        public ICollection<ProductPrice> ProductPrices { get; set; }
+        public ProductPrice ProductPrice { get; set; }
+        public ProductStock ProductStock { get; set; }
     }
 }

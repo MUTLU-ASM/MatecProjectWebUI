@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240412163232_mig_StoredProcedure_BestPrice")]
-    partial class mig_StoredProcedure_BestPrice
+    [Migration("20240413152328_mig_storedProcedures")]
+    partial class mig_storedProcedures
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -146,7 +146,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("UnitTypeId");
 
-                    b.ToTable("UnitType");
+                    b.ToTable("unitTypes");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Product", b =>
