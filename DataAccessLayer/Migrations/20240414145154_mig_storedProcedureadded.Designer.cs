@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20240413152328_mig_storedProcedures")]
-    partial class mig_storedProcedures
+    [Migration("20240414145154_mig_storedProcedureadded")]
+    partial class mig_storedProcedureadded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -99,7 +99,8 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("ProductPriceId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId")
+                        .IsUnique();
 
                     b.HasIndex("UnitTypeId");
 
@@ -125,7 +126,8 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("ProductStockId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId")
+                        .IsUnique();
 
                     b.HasIndex("UnitTypeId");
 
@@ -163,8 +165,8 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("EntityLayer.Concrete.ProductPrice", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Product", "Product")
-                        .WithMany("ProductPrices")
-                        .HasForeignKey("ProductId")
+                        .WithOne("ProductPrice")
+                        .HasForeignKey("EntityLayer.Concrete.ProductPrice", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -182,8 +184,8 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("EntityLayer.Concrete.ProductStock", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Product", "Product")
-                        .WithMany("ProductStocks")
-                        .HasForeignKey("ProductId")
+                        .WithOne("ProductStock")
+                        .HasForeignKey("EntityLayer.Concrete.ProductStock", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -205,9 +207,11 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.Product", b =>
                 {
-                    b.Navigation("ProductPrices");
+                    b.Navigation("ProductPrice")
+                        .IsRequired();
 
-                    b.Navigation("ProductStocks");
+                    b.Navigation("ProductStock")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.UnitType", b =>

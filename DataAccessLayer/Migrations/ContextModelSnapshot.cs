@@ -119,7 +119,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UnitTypeId")
+                    b.Property<int>("UnitTypeId")
                         .HasColumnType("int");
 
                     b.HasKey("ProductStockId");
@@ -189,7 +189,9 @@ namespace DataAccessLayer.Migrations
 
                     b.HasOne("EntityLayer.Concrete.UnitType", "UnitType")
                         .WithMany("ProductStocks")
-                        .HasForeignKey("UnitTypeId");
+                        .HasForeignKey("UnitTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Product");
 

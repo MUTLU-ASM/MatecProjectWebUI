@@ -19,9 +19,8 @@ namespace MatecProjectWebUI.Controllers
             SqlParameter validityDateParameter = new SqlParameter("validityDate", System.Data.SqlDbType.DateTime) { Direction = System.Data.ParameterDirection.Output };
             SqlParameter companyParameter = new SqlParameter("company", System.Data.SqlDbType.NVarChar, 250) { Direction = System.Data.ParameterDirection.Output };
 
-            await db.Database.ExecuteSqlRawAsync($"EXECUTE sp_GetPrice '98A457AST',@productCode OUTPUT,@stock OUTPUT,@price OUTPUT,@validityDate OUTPUT,@company OUTPUT", productParameter, stockParameter, priceParameter, validityDateParameter, companyParameter);
+            await db.Database.ExecuteSqlRawAsync($"EXECUTE sp_GetPrice 1,@productCode OUTPUT,@stock OUTPUT,@price OUTPUT,@validityDate OUTPUT,@company OUTPUT", productParameter, stockParameter, priceParameter, validityDateParameter, companyParameter);
 
-            var deneme = productParameter.Value.ToString();
             //Olusturulan model üzerinde gosterilmek istenilen bilgileri procedure fonksiyondan donen verileri model bilgilerine aktararak verilere erisilmis olundu. 
             List<ProcedureBestPriceModel> values = new List<ProcedureBestPriceModel>();
 
