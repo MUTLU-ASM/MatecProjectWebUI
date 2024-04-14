@@ -2,6 +2,9 @@
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json.Linq;
+using NToastNotify;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace MatecProjectWebUI.Controllers
 {
@@ -10,12 +13,14 @@ namespace MatecProjectWebUI.Controllers
         IProductStockService _productStockService;
         IProductService _productService;
         IUnitTypeService _unitTypeService;
+        IToastNotification _toastNotification;
 
-        public ProductStockController(IProductStockService productStockService, IProductService productService, IUnitTypeService unitTypeService)
+        public ProductStockController(IProductStockService productStockService, IProductService productService, IUnitTypeService unitTypeService, IToastNotification toastNotification)
         {
             _productStockService = productStockService;
             _productService = productService;
             _unitTypeService = unitTypeService;
+            _toastNotification = toastNotification;
         }
 
         public IActionResult Index()
@@ -33,11 +38,13 @@ namespace MatecProjectWebUI.Controllers
         [HttpPost]
         public IActionResult Create(ProductStock productStock)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _productStockService.TAdd(productStock);
+                _toastNotification.AddSuccessToastMessage(message: $"{productStock.Product.Code} Stoğu başarılı şekilde eklenmiştir.");
                 return RedirectToAction("Index");
             }
+            _toastNotification.AddErrorToastMessage(message: $"Başarısız işlem");
             DataSelectLists();
             return View();
         }
@@ -45,6 +52,7 @@ namespace MatecProjectWebUI.Controllers
         public IActionResult Delete(int id)
         {
             _productStockService.TDelete(id);
+            _toastNotification.AddWarningToastMessage(message: $"Başarılı şekilde silinmiştir.");
             return RedirectToAction("Index");
         }
 
@@ -58,9 +66,10 @@ namespace MatecProjectWebUI.Controllers
         [HttpPost]
         public IActionResult Update(ProductStock productStock)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 _productStockService.TUpdate(productStock);
+                _toastNotification.AddSuccessToastMessage(message: $"Başarılı şekilde güncellenmiştir.");
                 return RedirectToAction("Index");
             }
             DataSelectLists();

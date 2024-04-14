@@ -5,12 +5,16 @@ using FluentValidation.AspNetCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ContainerDependencies();
-builder.Services.AddDbContext<Context>();
 
 // Add services to the container.
-builder.Services.AddControllersWithViews().AddFluentValidation(x=>x.RegisterValidatorsFromAssemblyContaining<Program>());
-
+builder.Services.AddControllersWithViews().AddNToastNotifyNoty(new NToastNotify.NotyOptions()
+{
+    ProgressBar = true,
+    Timeout = 4000,
+    Theme = "mint"
+});
 var app = builder.Build();
+app.UseNToastNotify();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
