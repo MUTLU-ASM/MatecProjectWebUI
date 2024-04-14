@@ -20,9 +20,11 @@
                 <br />
                 <label>Fiyat</label>
                 <input type="text" class="form-control border" asp-for="Price">
+                <span asp-validation-for="Price" class="text-danger"></span>
                 <br />
                 <label>Geçerlilik Tarihi</label>
                 <input type="date" class="form-control border" asp-for="ValidityDate">
+                <span asp-validation-for="ValidityDate" class="text-danger"></span>
                 <br />
                 <button class="btn btn-info"><i class="fa-solid fa-rotate"></i>&nbsp;&nbsp; Güncelle</button>
                 <a href="/ProductPrice/Index" class="btn btn-primary float-right">Vazgeç</a>

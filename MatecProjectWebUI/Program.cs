@@ -1,5 +1,6 @@
 using BusinessLayer.Container;
 using DataAccessLayer.Concrete;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,7 @@ builder.Services.ContainerDependencies();
 builder.Services.AddDbContext<Context>();
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddFluentValidation(x=>x.RegisterValidatorsFromAssemblyContaining<Program>());
 
 var app = builder.Build();
 

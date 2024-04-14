@@ -12,6 +12,7 @@
                 <input type="hidden" class="form-control border" asp-for="UnitTypeId" readonly>
                 <label>Birim Cinsi</label>
                 <input type="text" class="form-control border" asp-for="Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
                 <br />
                 <button class="btn btn-info"><i class="fa-solid fa-rotate"></i>&nbsp;&nbsp; Güncelle</button>
                 <a href="/UnitType/Index" class="btn btn-primary float-right">Vazgeç</a>

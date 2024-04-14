@@ -14,15 +14,18 @@
                 <input type="hidden" class="form-control border" asp-for="ProductId" readonly>
                 <label>Ürün Kodu</label>
                 <input type="text" class="form-control border" asp-for="Code">
+                <span asp-validation-for="Code" class="text-danger"></span>
                 <br />
                 <label>Adı</label>
                 <input type="text" class="form-control border" asp-for="Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
                 <br />
                 <label>Firma</label>
                 <select asp-for="CompanyId" class="form-control" asp-items="@ViewBag.companyList"></select>
                 <br />
                 <label>Resim</label>
                 <input type="text" class="form-control border" asp-for="Image">
+                <span asp-validation-for="Image" class="text-danger"></span>
                 <br />
                 <button class="btn btn-info"><i class="fa-regular fa-floppy-disk"></i>&nbsp;&nbsp; Kaydet</button>
                 <a href="/Product/Index" class="btn btn-primary float-right">Vazgeç</a>

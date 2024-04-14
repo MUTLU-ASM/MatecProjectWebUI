@@ -26,18 +26,20 @@ namespace MatecProjectWebUI.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            List<SelectListItem> productList = GetProductList();
-            List<SelectListItem> unitTypeList = GetUnitTypeList();
-            ViewBag.productList = productList;
-            ViewBag.unitTypeList = unitTypeList;
+            DataSelectLists();
             return View();
         }
         [HttpPost]
         public IActionResult Create(ProductPrice productPrice)
         {
-            productPrice.LastUpdateDate = null;
-            _productPriceService.TAdd(productPrice);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                productPrice.LastUpdateDate = null;
+                _productPriceService.TAdd(productPrice);
+                return RedirectToAction("Index");
+            }
+            DataSelectLists();
+            return View();
         }
 
         public IActionResult Delete(int id)
@@ -49,19 +51,21 @@ namespace MatecProjectWebUI.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            List<SelectListItem> productList = GetProductList();
-            List<SelectListItem> unitTypeList = GetUnitTypeList();
-            ViewBag.productList = productList;
-            ViewBag.unitTypeList = unitTypeList;
+            DataSelectLists();
             var value = _productPriceService.TGetById(id);
             return View(value);
         }
         [HttpPost]
         public IActionResult Update(ProductPrice productPrice)
         {
-            productPrice.LastUpdateDate = DateTime.Now;
-            _productPriceService.TUpdate(productPrice);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                productPrice.LastUpdateDate = DateTime.Now;
+                _productPriceService.TUpdate(productPrice);
+                return RedirectToAction("Index");
+            }
+            DataSelectLists();
+            return View();
         }
 
         private List<SelectListItem> GetProductList()
@@ -82,6 +86,11 @@ namespace MatecProjectWebUI.Controllers
                         Text = x.Name,
                         Value = x.UnitTypeId.ToString()
                     }).ToList();
+        }
+        private void DataSelectLists()
+        {
+            ViewBag.productList = GetProductList();
+            ViewBag.unitTypeList = GetUnitTypeList();
         }
     }
 }

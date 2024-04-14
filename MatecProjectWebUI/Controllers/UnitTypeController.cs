@@ -27,8 +27,12 @@ namespace MatecProjectWebUI.Controllers
         [HttpPost]
         public IActionResult Create(UnitType unitType)
         {
-            _unitTypeService.TAdd(unitType);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _unitTypeService.TAdd(unitType);
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         public IActionResult Delete(int id)
@@ -38,7 +42,7 @@ namespace MatecProjectWebUI.Controllers
         }
 
         [HttpGet]
-        public IActionResult Update(int id) 
+        public IActionResult Update(int id)
         {
             var value = _unitTypeService.TGetById(id);
             return View(value);
@@ -46,8 +50,12 @@ namespace MatecProjectWebUI.Controllers
         [HttpPost]
         public IActionResult Update(UnitType unitType)
         {
-            _unitTypeService.TUpdate(unitType);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _unitTypeService.TUpdate(unitType);
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }

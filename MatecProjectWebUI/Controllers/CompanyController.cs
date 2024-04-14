@@ -15,7 +15,7 @@ namespace MatecProjectWebUI.Controllers
 
         public IActionResult Index()
         {
-           var values = _companyService.TGetAllList();
+            var values = _companyService.TGetAllList();
             return View(values);
         }
 
@@ -27,8 +27,12 @@ namespace MatecProjectWebUI.Controllers
         [HttpPost]
         public IActionResult Create(Company company)
         {
-            _companyService.TAdd(company);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _companyService.TAdd(company);
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         public IActionResult Delete(int id)
@@ -40,14 +44,19 @@ namespace MatecProjectWebUI.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
+
             var value = _companyService.TGetById(id);
             return View(value);
         }
         [HttpPost]
         public IActionResult Update(Company company)
         {
-            _companyService.TUpdate(company);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _companyService.TUpdate(company);
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }

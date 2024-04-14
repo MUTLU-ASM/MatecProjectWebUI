@@ -25,16 +25,21 @@ namespace MatecProjectWebUI.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            List<SelectListItem> companyList = GetCompanyList();
-            ViewBag.companyList = companyList;
+            DataSelectLists();
             return View();
         }
         [HttpPost]
         public IActionResult Create(Product product)
         {
-            product.Status = 1;
-            _productService.TAdd(product);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                product.Status = 1;
+                _productService.TAdd(product);
+                return RedirectToAction("Index");
+            }
+            DataSelectLists();
+            return View();
+
         }
 
         public IActionResult Delete(int id)
@@ -46,21 +51,22 @@ namespace MatecProjectWebUI.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            ViewBag.statusList = new List<SelectListItem>
-            {
-                  new SelectListItem { Text = "Pasif", Value = "0" },
-                  new SelectListItem { Text = "Aktif", Value = "1" }
-             };
-            List<SelectListItem> companyList = GetCompanyList();
-            ViewBag.companyList = companyList;
+            StatusList();
+            DataSelectLists();
             var value = _productService.TGetById(id);
             return View(value);
         }
         [HttpPost]
         public IActionResult Update(Product product)
         {
-            _productService.TUpdate(product);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _productService.TUpdate(product);
+                return RedirectToAction("Index");
+            }
+            StatusList();
+            DataSelectLists();
+            return View();
         }
 
         private List<SelectListItem> GetCompanyList()
@@ -71,6 +77,18 @@ namespace MatecProjectWebUI.Controllers
                         Text = x.Name,
                         Value = x.CompanyId.ToString()
                     }).ToList();
+        }
+        private void DataSelectLists()
+        {
+            ViewBag.companyList = GetCompanyList();
+        }
+        private void StatusList()
+        {
+            ViewBag.statusList = new List<SelectListItem>
+             {
+                   new SelectListItem { Text = "Pasif", Value = "0" },
+                   new SelectListItem { Text = "Aktif", Value = "1" }
+             };
         }
     }
 }
