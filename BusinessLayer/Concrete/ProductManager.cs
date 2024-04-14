@@ -45,6 +45,11 @@ namespace BusinessLayer.Concrete
             return _productDal.GetListInclude();
         }
 
+        public List<Product> TGetListIncludeAndWhere()
+        {
+            return _productDal.GetListIncludeAndWhere();
+        }
+
         public void TUpdate(Product entity)
         {
             _productDal.Update(entity);

@@ -1,12 +1,8 @@
 ﻿@model List<EntityLayer.Concrete.Product>
-@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    int sayac = 0;
-}
-<div class="card mx-6 mt-6 mb-4">
+@{int sayac=0;}
+<div class="card mx-6 mt-3 mb-4">
     <div class="card-header pb-0">
-        <h5>Ürün Listesi</h5>
+        <h5>Ürün Listesi - Geçerlilik Tarihi ve Pasif Duruma Göre Liste</h5>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -81,6 +77,3 @@
         </div>
     </div>
 </div>
-<a href="/Product/Create" class="btn btn-secondary mx-6"><i class="fa-solid fa-plus"></i>&nbsp; Yeni Ürün Ekle</a>
-
-@await Component.InvokeAsync("ProductListConditionComponentPartial")
